@@ -1,9 +1,9 @@
-// get all workouts
+// get all todo
 const getToken = async (req, res) => {
   res.status(200).json({ mssg: "use POST" });
 };
 
-// create a new workout
+// create a new todo
 const postToken = async (req, res) => {
   const { CBNum, Contexte, RefMonetique } = req.body;
 

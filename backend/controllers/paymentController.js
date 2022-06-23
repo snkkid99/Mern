@@ -1,9 +1,9 @@
-// get all workouts
+// get all todos
 const getPayment = async (req, res) => {
   res.status(200).json({ mssg: "use POST" });
 };
 
-// create a new workout
+// create a new todo
 const postPayment = async (req, res) => {
   const { RefMonetique } = req.body;
 

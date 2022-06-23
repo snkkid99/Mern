@@ -1,9 +1,9 @@
-// get all workouts
+// get all todos
 const getCommunication = async (req, res) => {
   res.status(200).json({ mssg: "use POST" });
 };
 
-// create a new workout
+// create a new todo
 const postCommunication = async (req, res) => {
   const { Type } = req.body;
 
@@ -26,12 +26,10 @@ const postCommunication = async (req, res) => {
       });
       break;
     default:
-      res
-        .status(200)
-        .json({
-          ResultType: Type,
-          DateFinValidite: yourDate.toISOString().split("T")[0],
-        });
+      res.status(200).json({
+        ResultType: Type,
+        DateFinValidite: yourDate.toISOString().split("T")[0],
+      });
       break;
   }
 };
