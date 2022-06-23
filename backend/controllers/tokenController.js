@@ -15,6 +15,7 @@ const postToken = async (req, res) => {
           detail: "detail:" + CBNum + ";" + Contexte,
         },
       });
+      break;
     case "5005005005005000":
       res.status(500).json({
         fault: {
