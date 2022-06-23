@@ -38,6 +38,9 @@ const logResponseBody = (req, res, next) => {
 
 app.use(logResponseBody);
 
+app.get("/", (req, res) => {
+  res.status(200).json({ mssg: "Hello" });
+});
 app.use("/json/apipm/payment", paymentRoutes);
 app.use("/json/apipm/token", tokenRoutes);
 app.use("/Communication/Create", communicationRoutes);
