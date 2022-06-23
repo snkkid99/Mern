@@ -9,14 +9,14 @@ const postToken = async (req, res) => {
 
   switch (CBNum) {
     case "4004004004004000":
-      res.status(parseInt(500)).json({
+      res.status(400).json({
         fault: {
           faultstring: "faultstring:" + CBNum + ";" + Contexte,
           detail: "detail:" + CBNum + ";" + Contexte,
         },
       });
     case "5005005005005000":
-      res.status(parseInt(500)).json({
+      res.status(500).json({
         fault: {
           faultstring: "faultstring:" + CBNum + ";" + Contexte,
           detail: "detail:" + CBNum + ";" + Contexte,
