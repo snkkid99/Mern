@@ -7,7 +7,7 @@ const getToken = async (req, res) => {
 const postToken = async (req, res) => {
   const { CBNum, Contexte, RefMonetique } = req.body;
 
-  switch (CBNum) {
+  switch (CBNum ?? RefMonetique) {
     case "4004004004004000":
       res.status(400).json({
         fault: {
@@ -38,7 +38,7 @@ const postToken = async (req, res) => {
       break;
 
     default:
-      res.status(200).json({ ResultType: RefMonetique, Contexte: Contexte });
+      res.status(200).json({ ResultType: CBNum, Contexte: Contexte });
       break;
   }
 };
