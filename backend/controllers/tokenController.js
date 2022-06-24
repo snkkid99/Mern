@@ -11,16 +11,16 @@ const postToken = async (req, res) => {
     case "4004004004004000":
       res.status(400).json({
         fault: {
-          faultstring: "faultstring:" + CBNum + ";" + Contexte,
-          detail: "detail:" + CBNum + ";" + Contexte,
+          faultstring: "faultstring:" + CBNum ?? RefMonetique + ";" + Contexte,
+          detail: "detail:" + CBNum ?? RefMonetique + ";" + Contexte,
         },
       });
       break;
     case "5005005005005000":
       res.status(500).json({
         fault: {
-          faultstring: "faultstring:" + CBNum + ";" + Contexte,
-          detail: "detail:" + CBNum + ";" + Contexte,
+          faultstring: "faultstring:" + CBNum ?? RefMonetique + ";" + Contexte,
+          detail: "detail:" + CBNum ?? RefMonetique + ";" + Contexte,
         },
       });
       break;
@@ -38,7 +38,9 @@ const postToken = async (req, res) => {
       break;
 
     default:
-      res.status(200).json({ ResultType: CBNum, Contexte: Contexte });
+      res
+        .status(200)
+        .json({ ResultType: CBNum ?? RefMonetique, Contexte: Contexte });
       break;
   }
 };
