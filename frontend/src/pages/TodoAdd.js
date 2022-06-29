@@ -4,9 +4,9 @@ import { useTodosContext } from "../hooks/useTodosContext";
 // components
 import TodoDetails from "../components/TodoDetails";
 import TodoForm from "../components/TodoForm";
-import { Layout, Row, Col } from "antd";
+import { Layout } from "antd";
 
-const Home = () => {
+const TodoAdd = () => {
   const { todos, dispatch } = useTodosContext();
   const { Sider, Content } = Layout;
 
@@ -23,14 +23,7 @@ const Home = () => {
     fetchTodos();
   }, [dispatch]);
 
-  return (
-    <div>
-      <Row>
-        {todos &&
-          todos.map((todo) => <TodoDetails todo={todo} key={todo._id} />)}
-      </Row>
-    </div>
-  );
+  return <TodoForm />;
 };
 
-export default Home;
+export default TodoAdd;

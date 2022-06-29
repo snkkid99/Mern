@@ -1,4 +1,5 @@
 import { useTodosContext } from "../hooks/useTodosContext";
+import { Card, Col } from "antd";
 
 // date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
@@ -18,23 +19,17 @@ const TodoDetails = ({ todo }) => {
   };
 
   return (
-    <div className="todo-details">
-      <h4>{todo.title}</h4>
-      <p>
-        <strong>Priorite: </strong>
-        {todo.priorite}
-      </p>
-      <p>
-        <strong>Description: </strong>
-        {todo.description}
-      </p>
+    <Col xs={24} xl={8}>
+      <p>{todo.title}</p>
+      <p>{todo.priorite}</p>
+      <p>{todo.description}</p>
       <p>
         {formatDistanceToNow(new Date(todo.createdAt), { addSuffix: true })}
       </p>
       <span className="material-symbols-outlined" onClick={handleClick}>
         delete
       </span>
-    </div>
+    </Col>
   );
 };
 

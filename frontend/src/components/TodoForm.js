@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Form, Input, Button, InputNumber } from "antd";
 import { useTodosContext } from "../hooks/useTodosContext";
 
 const TodoForm = () => {
@@ -10,14 +11,15 @@ const TodoForm = () => {
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onFinish = async (e) => {
+    //e.preventDefault();
+    console.log("Success:", e);
 
     const todo = { title, priorite, description };
 
     const response = await fetch("/api/todos", {
       method: "POST",
-      body: JSON.stringify(todo),
+      body: JSON.stringify(e),
       headers: {
         "Content-Type": "application/json",
       },
@@ -38,37 +40,36 @@ const TodoForm = () => {
     }
   };
 
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
-    <form className="create" onSubmit={handleSubmit}>
-      <h3>Add a New Todo</h3>
-
-      <label>Title:</label>
-      <input
-        type="text"
-        onChange={(e) => setTitle(e.target.value)}
-        value={title}
-        className={emptyFields.includes("title") ? "error" : ""}
-      />
-
-      <label>Priorite:</label>
-      <input
-        type="number"
-        onChange={(e) => setPriorite(e.target.value)}
-        value={priorite}
-        className={emptyFields.includes("priorite") ? "error" : ""}
-      />
-
-      <label>Description:</label>
-      <input
-        type="textarea"
-        onChange={(e) => setDescription(e.target.value)}
-        value={description}
-        className={emptyFields.includes("description") ? "error" : ""}
-      />
-
-      <button>Add Todo</button>
-      {error && <div className="error">{error}</div>}
-    </form>
+    <Form
+      name="basic"
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      labelCol={{ span: 2 }}
+      wrapperCol={{ span: 8 }}
+    >
+      <Form.Item label="Title" name="title">
+        <Input name="title" placeholder="Enter a Title" />
+      </Form.Item>
+      <Form.Item label="Priorite" name="priorite">
+        <InputNumber name="priorite" />
+      </Form.Item>
+      <Form.Item label="Description" name="description">
+        <Input name="description" placeholder="Enter the Description" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
 
