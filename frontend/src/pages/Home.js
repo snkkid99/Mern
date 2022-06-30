@@ -3,12 +3,10 @@ import { useTodosContext } from "../hooks/useTodosContext";
 
 // components
 import TodoDetails from "../components/TodoDetails";
-import TodoForm from "../components/TodoForm";
-import { Layout, Row, Col } from "antd";
+import { Row } from "antd";
 
 const Home = () => {
   const { todos, dispatch } = useTodosContext();
-  const { Sider, Content } = Layout;
 
   useEffect(() => {
     const fetchTodos = async () => {
